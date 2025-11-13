@@ -1,0 +1,31 @@
+# Docker ignore file to keep build context small
+# Dependencies & build artifacts
+node_modules
+.next/cache
+
+# Git & VCS
+.git
+.gitignore
+
+# Local env files (inject at runtime instead)
+.env
+.env.*
+
+# Logs & diagnostics
+npm-debug.log*
+yarn-error.log*
+
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+
+# Generated brochure PDF (regenerate when needed)
+public/brochure.pdf
+
+# Puppeteer / PDF scripts not needed in production image (optional exclusion)
+scripts/generate-pdf.js
+scripts/generate-qr.js
+scripts/generate-qr-svg.js
+
+# Tests (if any added later)
+__tests__
