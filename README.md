@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-# University-Landing-Pages
-=======
 # WHY Q University Landing Pages
+
+[![CI](https://github.com/Naseem7888/University-Landing-Page/actions/workflows/ci.yml/badge.svg)](https://github.com/Naseem7888/University-Landing-Page/actions/workflows/ci.yml)
 
 A modern, futuristic landing page project for WHY Q University built with Next.js 16, Tailwind CSS v4, and cutting-edge UI libraries.
 
@@ -31,26 +30,29 @@ A modern, futuristic landing page project for WHY Q University built with Next.j
 ## 📦 Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd KOLLAGE APPLY TASK
 ```
 
-2. Install dependencies:
+1. Install dependencies:
+
 ```bash
 npm install
 ```
 
-3. Configure environment variables:
+1. Configure environment variables:
    - Copy `.env.local` and add your Pipedream webhook URL
    - See `PIPEDREAM_SETUP.md` for webhook creation instructions
 
-4. Run the development server:
+1. Run the development server:
+
 ```bash
 npm run dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
+1. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## 🌐 Environment Variables
 
@@ -62,7 +64,7 @@ NEXT_PUBLIC_PIPEDREAM_WEBHOOK_URL=https://your-pipedream-endpoint.m.pipedream.ne
 
 ## 📁 Project Structure
 
-```
+```text
 src/
 ├── app/                 # Next.js App Router
 │   ├── api/            # API routes (courses, fees, placements, university-info)
@@ -83,18 +85,18 @@ src/
 └── types/              # TypeScript type definitions
 ```
 
-## � Documentation
+## 📚 Documentation
 
 - **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Complete deployment guide with Vercel setup, troubleshooting, and optimization tips
 - **[PIPEDREAM_SETUP.md](./PIPEDREAM_SETUP.md)** - Step-by-step guide for setting up Pipedream webhooks for lead form submission
 - **[public/images/README.md](./public/images/README.md)** - Image assets specifications and optimization guidelines
 - **[public/icons/README.md](./public/icons/README.md)** - Custom icon requirements and Lucide React usage
 
-## �🚢 Deployment
+## 🚢 Deployment
 
 See **[DEPLOYMENT.md](./DEPLOYMENT.md)** for comprehensive deployment instructions to Vercel.
 
-### Quick Deploy to Vercel:
+### Quick Deploy to Vercel
 
 1. **Set up Pipedream webhook** - Follow [PIPEDREAM_SETUP.md](./PIPEDREAM_SETUP.md)
 2. Push your code to GitHub
@@ -151,4 +153,3 @@ This is a task project for KOLLAGE. Contact the development team for contributio
 ## 📄 License
 
 Proprietary - WHY Q University © 2025
->>>>>>> b9210e5 (Initial commit: WHY Q University landing pages, brochure generation, and fixes)

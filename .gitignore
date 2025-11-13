@@ -46,3 +46,6 @@ next-env.d.ts
 *~
 # Generated brochure PDF (large binary, regenerate via scripts/generate-pdf.js)
 public/brochure.pdf
+
+# Local build logs
+build-log.txt
