@@ -28,7 +28,6 @@ yarn-error.log*
 .env*.local
 .env.local
 .env.development.local
-.env.test.local
 .env.production.local
 
 # Vercel
@@ -45,7 +44,7 @@ next-env.d.ts
 *.swo
 *~
 # Generated brochure PDF (large binary, regenerate via scripts/generate-pdf.js)
-public/brochure.pdf
+# We now commit the PDF so downloads work in Vercel
 
 # Local build logs
 build-log.txt
