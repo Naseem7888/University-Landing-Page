@@ -5,7 +5,7 @@
   "framework": "nextjs",
   "outputDirectory": ".next",
   "env": {
-    "NEXT_PUBLIC_PIPEDREAM_WEBHOOK_URL": "@pipedream_webhook_url"
+    "NEXT_PUBLIC_PIPEDREAM_WEBHOOK_URL": "https://eomgnfgqs3voc42.m.pipedream.net"
   },
   "headers": [
     {
