@@ -155,6 +155,13 @@ docker build -t whyq-university .
 docker run -p 3000:3000 -e NEXT_PUBLIC_PIPEDREAM_WEBHOOK_URL=YOUR_WEBHOOK whyq-university
 ```
 
+Docker requirements:
+
+* Windows: Install Docker Desktop (enables WSL2 backend). Ensure virtualization is enabled in BIOS and WSL2 feature installed.
+* Linux: Install Docker Engine via official packages; add user to `docker` group (`sudo usermod -aG docker <user>` then re-login).
+* macOS: Install Docker Desktop (Apple Silicon uses a lightweight VM).
+* After install: verify with `docker version` before building. If the command is not found, installation or PATH setup is incomplete.
+
 ## Optional GitHub Actions CI
 
 `.github/workflows/ci.yml`:

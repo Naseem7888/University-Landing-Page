@@ -7,9 +7,10 @@ import axios from 'axios'
 interface CTASectionProps {
   onApplyClick: () => void
   onFeesClick: () => void
+  onScheduleVisitClick: () => void
 }
 
-export default function CTASection({ onApplyClick, onFeesClick }: CTASectionProps) {
+export default function CTASection({ onApplyClick, onFeesClick, onScheduleVisitClick }: CTASectionProps) {
   const handleDownloadClick = async () => {
     try {
       await axios.post('/api/track-download', {
@@ -56,7 +57,7 @@ export default function CTASection({ onApplyClick, onFeesClick }: CTASectionProp
           <div className="glassmorphism p-8 text-center">
             <h3 className="text-2xl font-bold text-white mb-4">Campus Visit</h3>
             <p className="text-gray-400 mb-6">Schedule a campus tour</p>
-            <Button variant="ghost" className="w-full">Schedule</Button>
+            <Button variant="ghost" className="w-full" onClick={onScheduleVisitClick}>Schedule</Button>
           </div>
         </div>
       </div>

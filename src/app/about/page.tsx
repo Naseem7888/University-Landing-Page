@@ -1,3 +1,5 @@
+"use client"
+
 import Navbar from '@/components/shared/Navbar'
 import Footer from '@/components/shared/Footer'
 import OverviewSection from '@/components/lp1/OverviewSection'

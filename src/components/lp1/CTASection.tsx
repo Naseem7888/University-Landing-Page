@@ -8,9 +8,10 @@ import axios from 'axios'
 interface CTASectionProps {
   onApplyClick: () => void
   onFeesClick: () => void
+  onScheduleVisitClick: () => void
 }
 
-export default function CTASection({ onApplyClick, onFeesClick }: CTASectionProps) {
+export default function CTASection({ onApplyClick, onFeesClick, onScheduleVisitClick }: CTASectionProps) {
   const handleDownloadClick = async () => {
     try {
       await axios.post('/api/track-download', {
@@ -80,6 +81,7 @@ export default function CTASection({ onApplyClick, onFeesClick }: CTASectionProp
           <Button
             variant="ghost"
             size="lg"
+            onClick={onScheduleVisitClick}
             className="min-w-[250px]"
           >
             <Calendar className="mr-2 w-5 h-5" />

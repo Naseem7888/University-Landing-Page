@@ -40,7 +40,11 @@ export default function LandingPage1() {
         <PlacementsSection />
         <FacilitiesSection />
         <ContactSection />
-        <CTASection onApplyClick={() => handleApplyClick('CTA')} onFeesClick={handleFeesClick} />
+        <CTASection 
+          onApplyClick={() => handleApplyClick('CTA')}
+          onFeesClick={handleFeesClick}
+          onScheduleVisitClick={() => handleApplyClick('Schedule Visit')}
+        />
       </main>
 
       <Footer />
