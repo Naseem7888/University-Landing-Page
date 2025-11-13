@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHY Q University - Admissions Brochure 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0A0A0F 0%, #1a1a2e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .page {
+            width: 297mm;
+            height: 210mm;
+            padding: 30mm;
+            page-break-after: always;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 217, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(176, 38, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+        
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #00D9FF 0%, #B026FF 100%);
+            position: relative;
+        }
+        
+        .logo-text {
+            font-size: 64px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #00D9FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 40px rgba(0, 217, 255, 0.5);
+        }
+        
+        .tagline {
+            font-size: 36px;
+            color: #ffffff;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .intake-years {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 60px;
+        }
+        
+        .qr-container {
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            background: transparent; /* removed white background box */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0; /* no rounded white frame */
+            overflow: visible;
+            position: relative;
+        }
+        
+        .qr-text {
+            margin-top: 15px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .qr-logo {
+            position: absolute;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            background: #ffffff;
+            display: block;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 4px;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.85);
+            object-fit: contain;
+        }
+        .qr-image { width: 150px; height: 150px; object-fit: contain; }
+        .cover-watermark {
+            position: absolute;
+            width: 60%;
+            height: auto;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.08;
+            filter: blur(0.5px);
+            pointer-events: none;
+        }
+        
+        .content-page {
+            background: #0A0A0F;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0, 217, 255, 0.3);
+        }
+        .header-left { display:flex; align-items:center; gap:10px; }
+        .header-logo { width: 28px; height: 28px; border-radius: 6px; background:#ffffff; object-fit: contain; }
+        .cover-logo { width:90px; height:90px; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.25); margin-bottom:16px; background:#ffffff; object-fit:contain; }
+        .badge {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, rgba(0,217,255,0.25), rgba(176,38,255,0.25));
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(255,255,255,0.35);
+            padding: 10px 14px;
+            border-radius: 999px;
+            box-shadow: 0 0 0 3px rgba(0,217,255,0.25), 0 0 30px rgba(176,38,255,0.25);
+        }
+        .badge-text { font-family: 'Space Grotesk', sans-serif; font-weight:700; font-size:14px; color:#fff; letter-spacing:0.5px; text-shadow: 0 1px 2px rgba(0,0,0,0.35); }
+        .contact-link { color:#00D9FF; text-decoration:none; border-bottom:1px dashed rgba(0,217,255,0.5); }
+        .contact-link:hover { color:#B026FF; border-bottom-color:#B026FF; }
+        
+        .header h1 {
+            font-size: 32px;
+            background: linear-gradient(135deg, #00D9FF 0%, #B026FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header .page-num {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: #00D9FF;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #B026FF;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        /* Extracted text styles */
+        .subtitle {
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .paragraph {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 15px;
+        }
+        .accent-title {
+            color: #00D9FF;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .brand-strong {
+            color: #B026FF;
+        }
+        .note {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 10px;
+        }
+        .recruiters-title { 
+            color: #00D9FF; 
+            margin-bottom: 10px; 
+            font-size: 14px; 
+        }
+        .facility-text {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+        .brand-accent { color: #00D9FF; }
+        .mt-15 { margin-top: 15px; }
+        .cta-banner {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2) 0%, rgba(176, 38, 255, 0.2) 100%);
+            text-align: center;
+            padding: 25px;
+        }
+        .cta-heading { color: #ffffff; font-size: 20px; margin-bottom: 10px; }
+        .cta-desc { font-size: 14px; color: rgba(255, 255, 255, 0.9); margin-bottom: 15px; }
+        .cta-link { font-size: 13px; color: #00D9FF; font-weight: 600; }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #00D9FF;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .course-card {
+            background: rgba(176, 38, 255, 0.1);
+            border: 1px solid rgba(176, 38, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .course-card h4 {
+            font-size: 16px;
+            color: #B026FF;
+            margin-bottom: 8px;
+        }
+        
+        .course-meta {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 8px;
+        }
+        
+        .course-desc {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+        }
+        
+        .fees-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        
+        .fees-table th,
+        .fees-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .fees-table th {
+            background: rgba(0, 217, 255, 0.2);
+            color: #00D9FF;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .fees-table td {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .highlight {
+            color: #00D9FF;
+            font-weight: 600;
+        }
+        
+        .placement-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .metric-box {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2) 0%, rgba(176, 38, 255, 0.2) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .recruiters-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .recruiter-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #00D9FF 0%, #B026FF 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h4 {
+            font-size: 14px;
+            color: #00D9FF;
+            margin-bottom: 5px;
+        }
+        
+        .contact-details p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 20mm;
+            left: 30mm;
+            right: 30mm;
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .footer-logo { width:16px; height:16px; border-radius:4px; background:#ffffff; object-fit:contain; vertical-align:middle; margin-right:8px; }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="page cover-page">
+    <img src="images/Why%20Q.png" alt="WHY Q watermark" class="cover-watermark"/>
+    <div class="badge" aria-label="NIRF Top 50 University 2025"><span class="badge-text">🏆 NIRF Top 50 University • 2025</span></div>
+    <img src="images/Why%20Q.png" alt="WHY Q University logo" class="cover-logo"/>
+        <div class="logo-text">WHY Q UNIVERSITY</div>
+        <div class="tagline">Shape Your Future with Innovation</div>
+        <div class="intake-years">Admissions Open • 2025 – 2028</div>
+
+        <div class="qr-container">
+            <div id="qr-apply" class="qr-code" aria-label="QR code linking to whyq.edu/apply">
+                <img src="qr-apply.svg" alt="QR code to apply" class="qr-image"/>
+                <img src="images/Why%20Q.png" alt="WHY Q logo" class="qr-logo"/>
+            </div>
+            <div class="qr-text">Scan to Apply • whyq.edu/apply</div>
+            <noscript>
+                <div class="qr-text" style="margin-top:8px; font-size:12px; color:#ffdddd;">Enable JavaScript to render the QR code</div>
+            </noscript>
+        </div>
+    </div>
+
+    <!-- Page 1: Overview & Programs -->
+    <div class="page content-page">
+                <div class="header">
+                        <div class="header-left">
+                            <img src="images/Why%20Q.png" alt="WHY Q" class="header-logo"/>
+                            <h1>University Overview & Programs</h1>
+                        </div>
+            <div class="page-num">Page 1</div>
+        </div>
+
+        <!-- Mission & Stats -->
+        <div class="section">
+            <div class="glass-card">
+                <h3 class="subtitle">Our Mission</h3>
+                <p class="paragraph">
+                    Empowering students with world-class education, cutting-edge research, and industry-ready skills to become future leaders and changemakers.
+                </p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value">15,000+</span>
+                        <span class="stat-label">Students</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">800+</span>
+                        <span class="stat-label">Faculty</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">50+</span>
+                        <span class="stat-label">Programs</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">200</span>
+                        <span class="stat-label">Acres</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accreditations -->
+        <div class="section">
+            <div class="glass-card">
+                <h4 class="accent-title">Accreditations & Rankings</h4>
+                <p class="paragraph">
+                    <span class="highlight">NAAC A++</span> | <span class="highlight">NBA Accredited</span> | <span class="highlight">UGC Recognized</span> | <span class="highlight">AICTE Approved</span>
+                    <br/>
+                    <strong class="brand-strong">Ranked among Top 50 Universities in India</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Programs Offered -->
+        <div class="section">
+            <h2 class="section-title">Programs Offered</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <h4>Computer Science Engineering</h4>
+                    <div class="course-meta">B.Tech • 4 Years</div>
+                    <p class="course-desc">AI, ML, Cloud Computing, Software Development</p>
+                </div>
+                <div class="course-card">
+                    <h4>Electronics & Communication</h4>
+                    <div class="course-meta">B.Tech • 4 Years</div>
+                    <p class="course-desc">VLSI, Embedded Systems, IoT, Telecom</p>
+                </div>
+                <div class="course-card">
+                    <h4>Mechanical Engineering</h4>
+                    <div class="course-meta">B.Tech • 4 Years</div>
+                    <p class="course-desc">Robotics, Automotive, Manufacturing</p>
+                </div>
+                <div class="course-card">
+                    <h4>Civil Engineering</h4>
+                    <div class="course-meta">B.Tech • 4 Years</div>
+                    <p class="course-desc">Structural Design, Smart Cities</p>
+                </div>
+                <div class="course-card">
+                    <h4>Master of Business Administration</h4>
+                    <div class="course-meta">MBA • 2 Years</div>
+                    <p class="course-desc">Finance, Marketing, HR, Operations</p>
+                </div>
+                <div class="course-card">
+                    <h4>Bachelor of Business Administration</h4>
+                    <div class="course-meta">BBA • 3 Years</div>
+                    <p class="course-desc">Business Fundamentals, Entrepreneurship</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <img src="images/Why%20Q.png" alt="WHY Q" class="footer-logo"/>WHY Q University © 2025 | Bangalore, Karnataka, India | www.whyq.edu
+        </div>
+    </div>
+
+    <!-- Page 2: Fees, Placements & Contact -->
+    <div class="page content-page">
+                <div class="header">
+                        <div class="header-left">
+                            <img src="images/Why%20Q.png" alt="WHY Q" class="header-logo"/>
+                            <h1>Fees, Placements & Contact</h1>
+                        </div>
+            <div class="page-num">Page 2</div>
+        </div>
+
+        <!-- Fee Structure -->
+        <div class="section">
+            <h2 class="section-title">Annual Fee Structure</h2>
+            <div class="glass-card">
+                <table class="fees-table">
+                    <thead>
+                        <tr>
+                            <th>Program</th>
+                            <th>Tuition</th>
+                            <th>Hostel</th>
+                            <th>Total (Annual)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>B.Tech CSE</td>
+                            <td>₹2,50,000</td>
+                            <td>₹80,000</td>
+                            <td class="highlight">₹3,60,000</td>
+                        </tr>
+                        <tr>
+                            <td>B.Tech ECE</td>
+                            <td>₹2,40,000</td>
+                            <td>₹80,000</td>
+                            <td class="highlight">₹3,50,000</td>
+                        </tr>
+                        <tr>
+                            <td>MBA</td>
+                            <td>₹4,00,000</td>
+                            <td>₹80,000</td>
+                            <td class="highlight">₹5,10,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="note">
+                    <strong class="brand-strong">Scholarships Available:</strong> Merit-based (up to ₹1,00,000), Sports (₹50,000), Girls Excellence (₹60,000)
+                </p>
+            </div>
+        </div>
+
+        <!-- Placement Statistics -->
+        <div class="section">
+            <h2 class="section-title">Placement Highlights</h2>
+            <div class="placement-metrics">
+                <div class="metric-box">
+                    <span class="metric-value">94.5%</span>
+                    <span class="metric-label">Placement Rate</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">₹12L</span>
+                    <span class="metric-label">Average Package</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">₹54L</span>
+                    <span class="metric-label">Highest Package</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">250+</span>
+                    <span class="metric-label">Companies</span>
+                </div>
+            </div>
+            
+            <div class="glass-card">
+                <h4 class="recruiters-title">Top Recruiters</h4>
+                <div class="recruiters-grid">
+                    <div class="recruiter-box">Google</div>
+                    <div class="recruiter-box">Microsoft</div>
+                    <div class="recruiter-box">Amazon</div>
+                    <div class="recruiter-box">Infosys</div>
+                    <div class="recruiter-box">TCS</div>
+                    <div class="recruiter-box">Wipro</div>
+                    <div class="recruiter-box">Accenture</div>
+                    <div class="recruiter-box">Deloitte</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campus Facilities -->
+        <div class="section">
+            <h2 class="section-title">World-Class Facilities</h2>
+            <div class="glass-card">
+                <p class="facility-text">
+                    <strong class="brand-accent">•</strong> Central Library with 50,000+ books <strong class="brand-accent">•</strong> State-of-the-art Labs 
+                    <strong class="brand-accent">•</strong> Olympic-size Sports Complex <strong class="brand-accent">•</strong> Modern Hostels with 24/7 Security 
+                    <strong class="brand-accent">•</strong> Multi-Cuisine Cafeteria <strong class="brand-accent">•</strong> Innovation Hub & Startup Incubator 
+                    <strong class="brand-accent">•</strong> 24/7 Medical Center
+                </p>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="section">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="glass-card">
+                        <div class="contact-item">
+                        <div class="contact-icon">✉</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p><a class="contact-link" href="mailto:naseem.akhtar.yq@gmail.com">naseem.akhtar.yq@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                        <div class="contact-item">
+                        <div class="contact-icon">☎</div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p><a class="contact-link" href="tel:+919530840892">+91 9530840892</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card mt-15">
+                    <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h4>Campus Address</h4>
+                        <p><a class="contact-link" href="https://maps.google.com/?q=LOVELY%20Jalandhar%E2%80%93Delhi%20G.T.%20Road%2C%20Phagwara%2C%20Kapurthala%2C%20Punjab%2C%20144411" target="_blank" rel="noopener">LOVELY Jalandhar–Delhi G.T. Road, Phagwara, Kapurthala, Punjab, 144411</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Application CTA -->
+        <div class="glass-card cta-banner">
+            <h3 class="cta-heading">Ready to Join WHY Q University?</h3>
+            <p class="cta-desc">
+                Apply now for 2025-2028 intake and secure your future
+            </p>
+            <p class="cta-link">
+                Visit: www.whyq.edu/apply | Scan QR code on cover page
+            </p>
+        </div>
+
+        <div class="footer">
+            <img src="images/Why%20Q.png" alt="WHY Q" class="footer-logo"/>WHY Q University © 2025 | Bangalore, Karnataka, India | www.whyq.edu
+        </div>
+    </div>
+    
+                <!-- No inline QR JS needed; static qr-apply.png is generated by scripts/generate-qr.js -->
+</body>
+</html>

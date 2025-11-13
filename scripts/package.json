@@ -1,0 +1,13 @@
+{
+  "name": "pdf-generator",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "puppeteer": "^21.6.0",
+    "qrcode": "^1.5.4"
+  },
+  "scripts": {
+    "generate:qr": "node generate-qr.js",
+    "generate:qr:svg": "node generate-qr-svg.js"
+  }
+}
