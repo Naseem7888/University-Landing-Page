@@ -44,3 +44,5 @@ next-env.d.ts
 *.swp
 *.swo
 *~
+# Generated brochure PDF (large binary, regenerate via scripts/generate-pdf.js)
+public/brochure.pdf

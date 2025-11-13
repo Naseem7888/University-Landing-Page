@@ -1,55 +1,57 @@
 # Deployment Guide for WHY Q University Landing Pages
 
+## Recommended Strategy (Summary)
+
+Use **Vercel** for production deployment:
+
+* Native support for Next.js 15 + React 19 App Router
+* Automatic preview deployments per pull request
+* Global CDN, HTTP/2/3, SSL, image & font optimizations
+* Simple environment variable management (lead form webhook)
+* Lean repo (brochure PDF excluded) → faster builds
+
+Add Docker + CI only if you need portability/on‑prem.
+
 ## Prerequisites
 
-- GitHub account
-- Vercel account (free tier works)
-- Pipedream account (free tier works)
-- Node.js 18+ installed locally
+* GitHub account
+* Vercel account (free tier works)
+* Pipedream account (free tier works)
+* Node.js 18+ installed locally
 
 ## Step-by-Step Deployment
 
 ### 1. Setup Pipedream Webhook
 
-Before deploying, you need to create a Pipedream workflow for lead form submissions.
-
-1. Go to [Pipedream](https://pipedream.com) and sign up/login
-2. Create a new workflow
-3. Add an HTTP/Webhook trigger:
-   - Choose "New Requests (Payload Only)"
-   - Copy the unique webhook URL (e.g., `https://eoXXXXXXXXXX.m.pipedream.net`)
-4. Add processing steps (see `PIPEDREAM_SETUP.md` for details)
+1. Sign in at [Pipedream](https://pipedream.com)
+2. Create workflow → HTTP/Webhook trigger (New Requests Payload Only)
+3. Copy webhook URL (e.g. `https://eoXXXX.m.pipedream.net`)
+4. Add processing steps (see `PIPEDREAM_SETUP.md`)
 5. Deploy the workflow
 
-### 2. Configure Environment Variables
+### 2. Configure Environment Variables Locally
 
-1. Create or update `.env.local` in your project root:
+Create `.env.local`:
 
 ```bash
 NEXT_PUBLIC_PIPEDREAM_WEBHOOK_URL=https://your-actual-webhook-url.m.pipedream.net
 ```
 
-2. Test locally:
+Then run:
+
 ```bash
 npm install
 npm run dev
 ```
 
-3. Visit `http://localhost:3000` and test the lead form submission
+Visit `http://localhost:3000` and submit a test lead.
 
 ### 3. Push to GitHub
 
-1. Initialize git repository (if not already):
 ```bash
 git init
 git add .
 git commit -m "Initial commit: WHY Q University landing pages"
-```
-
-2. Create a new repository on GitHub
-
-3. Push your code:
-```bash
 git remote add origin https://github.com/your-username/whyq-university.git
 git branch -M main
 git push -u origin main
@@ -57,84 +59,62 @@ git push -u origin main
 
 ### 4. Deploy to Vercel
 
-#### Option A: Vercel Dashboard (Recommended)
+#### Option A: Dashboard (Recommended)
 
-1. Go to [Vercel Dashboard](https://vercel.com/dashboard)
-2. Click "Add New Project"
-3. Import your GitHub repository
-4. Configure project:
-   - **Framework Preset**: Next.js (auto-detected)
-   - **Root Directory**: `./`
-   - **Build Command**: `npm run build` (default)
-   - **Output Directory**: `.next` (default)
+1. Add New Project → import repo
+1. Defaults okay (Next.js auto-detected)
+1. Add env var:
 
-5. Add environment variable:
-   - Key: `NEXT_PUBLIC_PIPEDREAM_WEBHOOK_URL`
-   - Value: Your Pipedream webhook URL
+* Key: `NEXT_PUBLIC_PIPEDREAM_WEBHOOK_URL`
+* Value: your webhook URL
+* Environments: Production (+ Preview if testing PR forms)
 
-6. Click "Deploy"
+1. Deploy → wait 2–3 min
+1. Live at `https://your-project.vercel.app`
 
-7. Wait for deployment to complete (2-3 minutes)
+#### Option B: CLI
 
-8. Your site will be live at: `https://your-project.vercel.app`
-
-#### Option B: Vercel CLI
-
-1. Install Vercel CLI:
 ```bash
 npm i -g vercel
-```
-
-2. Login to Vercel:
-```bash
 vercel login
-```
-
-3. Deploy:
-```bash
-vercel
-```
-
-4. Follow prompts and add environment variable when asked
-
-5. For production deployment:
-```bash
+vercel    # preview
 vercel --prod
 ```
 
+
 ### 5. Verify Deployment
 
-1. Visit your deployed URL
-2. Test both landing pages:
-   - `/` - Home page with navigation
-   - `/lp1` - Landing Page 1
-   - `/lp2` - Landing Page 2
+1. Visit site
+2. Check `/`, `/lp1`, `/lp2`
+3. Open Apply form → submit → success message → verify Pipedream execution
+4. Open Fees modal → data loads
+5. (Optional) Regenerate brochure PDF locally:
 
-3. Test lead form submission:
-   - Click "Apply Now" on any page
-   - Fill out the form
-   - Submit and verify success message
-   - Check Pipedream workflow execution logs
+```bash
+node scripts/generate-pdf.js
+```
 
-4. Test fees modal:
-   - Click "Check Course-wise Fees"
-   - Verify fee data loads correctly
+Host `brochure.pdf` via Releases/object storage (keep out of repo).
+
+### 5.1 On-Demand Brochure PDF (Advanced)
+
+If you need server generation:
+
+1. Use `puppeteer-core` + `@sparticuz/chromium`.
+1. API route `/api/generate-brochure` loads `public/brochure.html`.
+1. Return streamed PDF (`application/pdf`).
+1. Protect with API key header & rate limiting.
 
 ### 6. Custom Domain (Optional)
 
-1. In Vercel Dashboard, go to your project
-2. Navigate to "Settings" → "Domains"
-3. Add your custom domain
-4. Follow DNS configuration instructions
-5. SSL certificate is automatically provisioned
+Add domain in Vercel Settings → Domains → follow DNS. SSL auto.
 
 ### 7. Continuous Deployment
 
-Vercel automatically deploys:
-- **Production**: Pushes to `main` branch
-- **Preview**: Pull requests and other branches
+Vercel auto deploys:
 
-Every push triggers a new deployment with preview URL.
+* Production: pushes to `main`
+* Preview: other branches & PRs
 
 ## Environment Variables Reference
 
@@ -142,58 +122,124 @@ Every push triggers a new deployment with preview URL.
 |----------|-------------|----------|
 | `NEXT_PUBLIC_PIPEDREAM_WEBHOOK_URL` | Pipedream HTTP trigger endpoint for lead forms | Yes |
 
+## Optional Docker Deployment
+
+```Dockerfile
+FROM node:20-alpine AS deps
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
+
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+ENV NEXT_PUBLIC_PIPEDREAM_WEBHOOK_URL=${NEXT_PUBLIC_PIPEDREAM_WEBHOOK_URL}
+RUN npm run build
+
+FROM node:20-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+RUN adduser -D nextjs
+USER nextjs
+EXPOSE 3000
+CMD ["npm","run","start"]
+```
+Run:
+
+```bash
+docker build -t whyq-university .
+docker run -p 3000:3000 -e NEXT_PUBLIC_PIPEDREAM_WEBHOOK_URL=YOUR_WEBHOOK whyq-university
+```
+
+## Optional GitHub Actions CI
+
+`.github/workflows/ci.yml`:
+
+```yaml
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - run: npm run lint
+```
+
+Vercel handles deploy; CI ensures health.
+
 ## Troubleshooting
 
 ### Build Fails
 
-- Check Node.js version (requires 18+)
-- Verify all dependencies are in `package.json`
-- Check build logs in Vercel dashboard
+* Node.js < 18 → upgrade
+* Missing deps → check `package.json`
+* See Vercel build logs
 
 ### Lead Form Not Submitting
 
-- Verify Pipedream webhook URL is correct
-- Check browser console for errors
-- Verify environment variable is set in Vercel
-- Test webhook URL directly with curl/Postman
+* Wrong webhook URL
+* Env var missing in Vercel
+* Browser console errors
+* Test with curl/Postman
 
 ### API Routes Not Working
 
-- Ensure API routes are in `src/app/api/` directory
-- Check route.ts files have named exports (GET, POST)
-- Verify responses return NextResponse with proper headers
+* Path under `src/app/api/`
+* Export correct handlers (GET/POST)
+* Return NextResponse with proper status
 
 ### Styling Issues
 
-- Clear browser cache
-- Check Tailwind config is correct
-- Verify PostCSS config exists
+* Clear cache
+* Tailwind/PostCSS config intact
+* Classes not purged inadvertently
 
 ## Performance Optimization
 
-- Images: Add to `public/images/` and use Next.js Image component
-- Fonts: Already optimized with `next/font/google`
-- Analytics: Add Vercel Analytics in dashboard (free)
+* Use `<Image />` for images in `public/images/`
+* Fonts via `next/font/google`
+* Enable Vercel Analytics
+* Keep repo small (exclude large PDFs)
 
 ## Security
 
-- Environment variables are encrypted by Vercel
-- HTTPS is enforced automatically
-- Security headers are configured in `vercel.json`
-- CORS is handled by Next.js API routes
+* Env vars encrypted
+* HTTPS enforced
+* Add custom headers via middleware if needed
+* zod validation protects form inputs
 
 ## Monitoring
 
-- View deployment logs in Vercel dashboard
-- Monitor Pipedream workflow executions
-- Check Vercel Analytics for traffic insights
+* Vercel deploy/function logs
+* Pipedream workflow logs
+* Vercel Analytics metrics
 
 ## Support
 
-- Vercel Docs: https://vercel.com/docs
-- Next.js Docs: https://nextjs.org/docs
-- Pipedream Docs: https://pipedream.com/docs
+* Vercel Docs: <https://vercel.com/docs>
+* Next.js Docs: <https://nextjs.org/docs>
+* Pipedream Docs: <https://pipedream.com/docs>
 
 ---
+**Deployment completed!** WHY Q University landing pages live with CDN, SSL, and lead capture.
 
-**Deployment completed!** Your WHY Q University landing pages are now live with automatic SSL, global CDN, and lead capture integration.
+### Quick Reference
+
+| Task | Command |
+|------|---------|
+| Dev | `npm run dev` |
+| Prod build | `npm run build` |
+| Start prod | `npm run start` |
+| Regenerate brochure PDF | `node scripts/generate-pdf.js` |
+| Generate QR (SVG) | `node scripts/generate-qr-svg.js` |
